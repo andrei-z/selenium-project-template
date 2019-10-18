@@ -15,7 +15,7 @@ public class Driver implements WebDriver {
 
     private WebDriver driver;
 
-    public enum Browser {
+    public enum Browser { // values to use in Maven CLI, e.g. -Dbrowser=safari to run tests with Safari
         CHROME("chrome"),
         FIREFOX("firefox"),
         SAFARI("safari"),
@@ -49,6 +49,8 @@ public class Driver implements WebDriver {
 
     public static String selectBrowser(Browser browser){
         return browser.getBrowser();
+        // Usage: driver = new Driver(selectBrowser(FIREFOX));
+        // where 'FIREFOX' is an option from Browser enum
     }
 
     public static String getParameter(String name){
