@@ -14,7 +14,6 @@ import java.util.Set;
 public class Driver implements WebDriver {
 
     private WebDriver driver;
-    private String browserName;
 
     public enum Browser {
         CHROME("chrome"),
@@ -34,7 +33,6 @@ public class Driver implements WebDriver {
     }
 
     public Driver(String browserName){
-        this.browserName = browserName;
 
         if(browserName.equalsIgnoreCase(String.valueOf(Browser.CHROME)))
             this.driver = new ChromeDriver();
