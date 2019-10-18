@@ -1,5 +1,5 @@
 # selenium-project-template
-Contains a custom Driver class and test examples. Runs on Java 1.8
+Contains a custom Driver class with usage examples. Runs on Java 1.8
 
 ### Maven CLI
 Setup supports running tests from Maven with a specific browser, e.g.:<br/><br/>
