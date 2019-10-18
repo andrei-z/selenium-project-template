@@ -11,6 +11,8 @@ import org.openqa.selenium.safari.SafariDriver;
 import java.util.List;
 import java.util.Set;
 
+import static drivermanager.Driver.Browser.currentDriver;
+
 public class Driver implements WebDriver {
 
     private WebDriver driver;
@@ -21,6 +23,7 @@ public class Driver implements WebDriver {
         SAFARI("safari"),
         HTMLUNIT("htmlunit");
 
+        public static Browser currentDriver;
         private String browser;
 
         Browser(String browser){
@@ -34,17 +37,25 @@ public class Driver implements WebDriver {
 
     public Driver(String browserName){
 
-        if(browserName.equalsIgnoreCase(String.valueOf(Browser.CHROME)))
+        if(browserName.equalsIgnoreCase(String.valueOf(Browser.CHROME))) {
             this.driver = new ChromeDriver();
+            currentDriver = Browser.CHROME;
+        }
 
-        if(browserName.equalsIgnoreCase(String.valueOf(Browser.FIREFOX)))
+        if(browserName.equalsIgnoreCase(String.valueOf(Browser.FIREFOX))) {
             this.driver = new FirefoxDriver();
+            currentDriver = Browser.FIREFOX;
+        }
 
-        if(browserName.equalsIgnoreCase(String.valueOf(Browser.SAFARI)))
+        if(browserName.equalsIgnoreCase(String.valueOf(Browser.SAFARI))) {
             this.driver = new SafariDriver();
+            currentDriver = Browser.SAFARI;
+        }
 
-        if(browserName.equalsIgnoreCase(String.valueOf(Browser.HTMLUNIT)))
+        if(browserName.equalsIgnoreCase(String.valueOf(Browser.HTMLUNIT))) {
             this.driver = new HtmlUnitDriver();
+            currentDriver = Browser.HTMLUNIT;
+        }
     }
 
     public static String selectBrowser(Browser browser){
@@ -55,8 +66,10 @@ public class Driver implements WebDriver {
 
     public static String getParameter(String name){
         String value = System.getProperty(name);
-        if (value == null || value.isEmpty())
+        if (value == null || value.isEmpty()) {
             value = "chrome"; // default browser if -Dbrowser is not defined, or the value does not exist
+            currentDriver = Browser.CHROME;
+        }
 
         int browserFound = 0;
         for(Browser b : Browser.values()){
@@ -66,6 +79,7 @@ public class Driver implements WebDriver {
         }
             if (browserFound!=1){
                 value = "chrome";
+                currentDriver = Browser.CHROME;
                 System.out.println("Failed to select the browser. Switching to Google Chrome...");
             }
 

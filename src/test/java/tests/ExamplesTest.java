@@ -2,7 +2,7 @@ package tests;
 
 import drivermanager.Driver;
 
-import static drivermanager.Driver.Browser.FIREFOX;
+import static drivermanager.Driver.Browser.*;
 import static drivermanager.Driver.getParameter;
 import static drivermanager.Driver.selectBrowser;
 
@@ -41,6 +41,7 @@ public class ExamplesTest {
     public void exampleOne(){
         driver.get("http://yr.no/");
         Assert.assertTrue(driver.getTitle().startsWith("Yr"));
+        Assert.assertSame(currentDriver, CHROME); // assert current driver is 'chrome'
     }
 
     /* exampleTwo [not recommended]. @Test will run with 'firefox' regardless of the run being started from IDE or Maven
@@ -53,5 +54,6 @@ public class ExamplesTest {
 
         driver.get("http://yr.no/");
         Assert.assertTrue(driver.getTitle().startsWith("Yr"));
+        Assert.assertSame(currentDriver, FIREFOX); // assert current driver is 'firefox'
     }
 }
