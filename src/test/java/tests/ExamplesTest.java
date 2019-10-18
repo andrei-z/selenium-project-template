@@ -41,7 +41,7 @@ public class ExamplesTest {
     public void exampleOne(){
         driver.get("http://yr.no/");
         Assert.assertTrue(driver.getTitle().startsWith("Yr"));
-        Assert.assertSame(currentDriver, CHROME); // assert current driver is 'chrome'
+        Assert.assertSame(CHROME, currentDriver); // assert current driver is 'chrome'
     }
 
     /* exampleTwo [not recommended]. @Test will run with 'firefox' regardless of the run being started from IDE or Maven
@@ -54,6 +54,6 @@ public class ExamplesTest {
 
         driver.get("http://yr.no/");
         Assert.assertTrue(driver.getTitle().startsWith("Yr"));
-        Assert.assertSame(currentDriver, FIREFOX); // assert current driver is 'firefox'
+        Assert.assertSame(FIREFOX, currentDriver); // assert current driver is 'firefox'
     }
 }

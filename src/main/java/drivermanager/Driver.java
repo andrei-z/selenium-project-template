@@ -35,6 +35,8 @@ public class Driver implements WebDriver {
         }
     }
 
+    private static Browser defaultBrowser = Browser.CHROME;
+
     public Driver(String browserName){
 
         if(browserName.equalsIgnoreCase(String.valueOf(Browser.CHROME))) {
@@ -67,24 +69,23 @@ public class Driver implements WebDriver {
     public static String getParameter(String name){
         String value = System.getProperty(name);
         if (value == null || value.isEmpty()) {
-            value = "chrome"; // default browser if -Dbrowser is not defined, or the value does not exist
-            currentDriver = Browser.CHROME;
+            value = String.valueOf(defaultBrowser); // default browser if -Dbrowser is not defined, or the value does not exist
+            currentDriver = defaultBrowser;
         }
-
-        int browserFound = 0;
+        boolean browserFound = false;
         for(Browser b : Browser.values()){
-            if (value.equals(b.getBrowser())){
-                browserFound++;
+            if (value.equals(b.getBrowser())) {
+                browserFound = true;
+                break;
             }
         }
-            if (browserFound!=1){
-                value = "chrome";
-                currentDriver = Browser.CHROME;
-                System.out.println("Failed to select the browser. Switching to Google Chrome...");
-            }
-
+        if(!browserFound){
+            value = String.valueOf(defaultBrowser);
+            currentDriver = defaultBrowser;
+        }
         return value;
     }
+
 
     @Override
     public void get(String url) {
