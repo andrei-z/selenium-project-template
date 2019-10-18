@@ -7,4 +7,4 @@ Setup supports running tests from Maven with a specific browser, e.g.:<br/><br/>
 Tests will run in Google Chrome if _-Dbrowser_ is not defined
 
 ### pom.xml
-Config allows usage of both JUnit 4 and JUnit 5
+Config allows usage of JUnit 4 and JUnit 5
