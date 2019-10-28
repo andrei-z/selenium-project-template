@@ -1,3 +1,6 @@
+/*
+ * source: https://github.com/andrei-z/selenium-project-template
+ **/
 package tests;
 
 import drivermanager.Driver;
